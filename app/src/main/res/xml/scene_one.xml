@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/clickPokeball"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="2000">
+        <KeyFrameSet>
+           <KeyAttribute
+               android:rotation="-60"
+               motion:framePosition="30"
+               motion:motionTarget="@+id/logoImageFilter"/>
+            <KeyAttribute
+                android:rotation="60"
+                motion:framePosition="60"
+                motion:motionTarget="@+id/logoImageFilter"/>
+            <KeyAttribute
+                android:rotation="0"
+                motion:framePosition="90"
+                motion:motionTarget="@+id/logoImageFilter"/>
+        </KeyFrameSet>
+        <OnClick motion:targetId="@+id/logoImageFilter" />
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/clickPokeball"
+        motion:constraintSetEnd="@+id/halfOpenOnboarding"
+        motion:autoTransition="animateToEnd" />
+
+    <Transition
+        motion:constraintSetStart="@+id/halfOpenOnboarding"
+        motion:constraintSetEnd="@+id/fullOpenOnboaring"
+        motion:autoTransition="animateToEnd" />
+
+    <Transition
+        motion:constraintSetStart="@+id/fullOpenOnboaring"
+        motion:constraintSetEnd="@+id/firstPage"
+        motion:autoTransition="animateToEnd"
+        motion:staggered=".6" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/logoImageFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/bulbasaurImageFilter"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="-64dp"
+            android:layout_marginTop="64dp"
+            android:alpha="0"
+            android:translationX="-30dp" />
+
+        <Constraint
+            android:id="@+id/squirtleImageFilter"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="-110dp"
+            android:layout_marginBottom="130dp"
+            android:alpha="0"
+            android:translationX="30dp" />
+        <Constraint
+            android:id="@+id/nextPageButton"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/logoImageFilter"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="48dp"
+            android:alpha="0"
+            android:translationY="10dp" />
+        <Constraint
+            android:id="@+id/firstTextView"
+            motion:layout_constraintEnd_toEndOf="@id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/firstTitleTextView"
+            motion:layout_constraintStart_toStartOf="@id/firstTitleTextView"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/firstTitleTextView"
+            motion:layout_constraintEnd_toEndOf="@id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="240dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/clickPokeball"
+        motion:deriveConstraintsFrom="@id/start">
+        <Constraint
+            android:id="@+id/logoImageFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/halfOpenOnboarding"
+        motion:deriveConstraintsFrom="@+id/clickPokeball" >
+        <Constraint
+            android:id="@+id/background"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/fullOpenOnboaring"
+        motion:deriveConstraintsFrom="@+id/halfOpenOnboarding" >
+        <Constraint
+            android:id="@+id/background"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="2"
+            android:scaleY="2" />
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/firstPage"
+        motion:deriveConstraintsFrom="@id/fullOpenOnboaring">
+        <Constraint
+            android:id="@+id/bulbasaurImageFilter"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:translationX="0dp"
+            android:alpha="1"
+            android:layout_marginStart="-64dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="64dp"/>
+        <Constraint
+            android:id="@+id/squirtleImageFilter"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:translationX="0dp"
+            android:layout_marginBottom="130dp"
+            android:layout_marginEnd="-110dp"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/nextPageButton"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            motion:layout_constraintTop_toBottomOf="@+id/logoImageFilter"
+            android:layout_marginEnd="48dp"
+            android:alpha="1"
+            android:translationX="0dp"/>
+        <Constraint
+            android:id="@+id/firstTitleTextView"
+            motion:layout_constraintEnd_toEndOf="@id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="240dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:translationX="20dp"
+            android:alpha="1"
+            motion:motionStagger="1" />
+        <Constraint
+            android:id="@+id/firstTextView"
+            motion:layout_constraintEnd_toEndOf="@id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/firstTitleTextView"
+            motion:layout_constraintStart_toStartOf="@id/firstTitleTextView"
+            android:translationX="20dp"
+            android:alpha="1"
+            motion:motionStagger="2" />
+    </ConstraintSet>
+
+</MotionScene>
